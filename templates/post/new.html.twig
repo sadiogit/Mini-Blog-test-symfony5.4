@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel article{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <h1>Créer un nouveau article</h1>
+
+    {{ include('post/_form.html.twig') }}
+
+    <a href="{{ path('app_post_index') }}" class="my-5 text-decoration-none">Retour</a>
+
+</div>
+{% endblock %}

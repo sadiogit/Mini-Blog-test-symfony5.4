@@ -1,0 +1,13 @@
+ 
+$primary:       #DC5E44;
+$secondary:     #FB5607;
+$success:       #3A86FF;
+$info:          #FF006E;
+$light:         #8338EC;
+$primary_font_family: 'Whitney-Bold', sans-serif;
+
+@if ($primary_font_family == ('Whitney-Bold', sans-serif)) {
+  .primary-header__brand-wrap {
+     background-color: red !important;
+  }
+}

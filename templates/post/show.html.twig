@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+
+    <div class="container my-5">
+    <table class="table-borderless">
+        <tbody>
+         {% for image in post.images %}
+            <tr>
+                <th/>
+                <td> <h1>Article N° {{ post.id }}</h1></td>
+            </tr>
+            
+             <tr>
+                <th>Titre de l'article</th>
+                <td>{{ post.title }}</td>
+            </tr>
+
+            <tr>
+                <th>date de création</th>
+                <td>{{ post.dateCreated ? post.dateCreated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>   
+
+            <tr>
+                <th>image</th>
+                   <td>  <img src="{{ asset('/uploads/' ~  image.cover) }}" alt="Image"  width="150" height="100"> </td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ post.content }}</td>
+            </tr>
+          
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="mt-3 mb-3">
+    {{ include('post/_delete_form.html.twig') }}
+    </div>
+    <div>
+     <a href="{{ path('app_post_index') }}">Retour</a>
+    </div>
+    </div>
+{% endblock %}

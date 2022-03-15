@@ -1,0 +1,38 @@
+
+{{ form_start(form) }}
+
+ <div class="row">
+    <div class="col-md-4">  
+        {{form_row(form.title) }}
+       
+    </div>
+   
+     <div  class="col-md-5">  
+        {{form_row(form.images)}} 
+        
+            {% if app.request.attributes.get('_route') == 'app_post_edit'  %}
+                <h2>Images</h2>
+                {% for image in post.images %}
+                    <div class="col-md-3">
+                        <img src="{{ asset('/uploads/' ~  image.cover) }}" alt="Image" width="150">
+                        <a href="{{ path('app_post_delete_image', {'id': image.id}) }}" 
+                        data-delete data-token="{{ csrf_token('delete' ~ image.id) }}"> Supprimer </a>
+                    </div>
+                {% endfor %}
+
+                {% endif %}    
+            </div> 
+       
+       <div class="col-md-3">     
+        {{form_row(form.date_created)}} 
+    </div>
+    <div class="col-md-12 mt-5"> 
+        {{form_row(form.content)}}      
+    </div>    
+   
+   <div> 
+   <button class="btn btn-primary mt-3 mb-3">{{ button_label|default('Enregistrer') }}</button>
+   </div>         
+        
+</div>    
+{{ form_end(form) }}

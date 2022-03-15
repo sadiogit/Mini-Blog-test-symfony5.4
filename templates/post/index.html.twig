@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post index{% endblock %}
+
+{% block body %}
+   <div class="container">
+         
+        <div class=" mt-5 mb-3 d-flex justify-content-between align-items-center">
+        <h1>liste des Artcles</h1>
+         <a href="{{ path('app_post_new') }}" 
+         class="btn btn-primary btn-lg " role="button" aria-pressed="true">
+         Créer un article</a>   
+        </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+               
+                <th scope="col" class="text-center">titre de l'article</th>
+                <th scope="col" class="text-center">Contenu de l'article</th>
+                <th scope="col">Image d'illustration</th>
+                <th />
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+
+             {% for image in post.images %}
+            <tr>
+
+                <td>{{ post.title|length > 20 ? post.title|slice(0, 20) ~ '...': post.title }} </td>
+                <td>{{ post.content|length > 80 ? post.content|slice(0, 80) ~ ' ': post.content }} </td>
+                <td class="text-center">  <img src="{{ asset('/uploads/' ~  image.cover) }}" alt="Image" width="80" height="50"> </td>
+                  
+                <td>
+                    <a href="{{ path('app_post_show', {'id': post.id, slug:post.slug}) }}"
+                         class="btn btn-primary btn-sm" role="button" aria-pressed="true">Detail</a>
+                    <a href="{{ path('app_post_edit', {'id': post.id}) }}"
+                     class="btn btn-primary btn-sm " role="button" aria-pressed="true">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">aucun article</td>
+            </tr>
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+   </div>
+
+{% endblock %}
